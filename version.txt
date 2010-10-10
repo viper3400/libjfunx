@@ -1,0 +1,28 @@
+﻿1.0.0.4				- erste Implementiertung der operating.FileExchange Funktionen
+
+(Change1/1.0.0.5)	- Anpassung in operating.INIFile 
+					- Die INI Werte werden nun auch dann ausgelesen, wenn es sich bei Setzen eines Dateinamens
+					  um den bereits bekannten handelt, das wurde so im Code abgerüft.
+(Change2/1.0.0.5)	- IconHandler implementiert
+
+1.0.1 / FS#3, FS#5	- Die INI Klasse hatte keinen Zeichensatz, so dass Umlaute und Sonderzeichen nicht richtig dargestellt wurden.
+
+1.0.2 / FS#14		- Logging: CutIfBigger angepasst (Fall, das eine Meldung mit Länge 0 übergeben wird)
+
+1.0.3 / FS#14		- Logging: Problem noch nicht behoben, anstatt eine Exception zu werfen, wir nun ein Logeintrag geschrieben,
+								was zumindst den Absturz der Applikation verhindern sollte.
+
+		FS3#6		- SpecialEnvironment: implementiert (All Users Pfade)
+		
+1.0.3.2 / FS#3 #f	- Zeichensatz auch im StreamWriter, da immer noch Fehler	
+
+1.0.6				- SleepTime im QueueWriter, WriteMessage auf 500ms gesetzt, da es immer noch zu Excpeptions kommt, wenn das Logfile
+						noch nicht wieder freigegebn ist
+						
+1.0.7				- Beim Beenden mehrerer parallel laufender Applikationen, die ins selbe Logfile schreiben, kam es zu einer Exeption,
+						die bisher zu Degbugzwecken mit einem Fenster abgefangen wurde (QueueWriter). Hier ist nun ein Sleep von 500ms im
+						catch Statement eingebaut, danach wird erneut versucht, die Meldung zu loggen.
+
+1.1.0				- ImageRezizer eingebunden	
+
+1.2.0				- operating.FileSystem eingebunden
