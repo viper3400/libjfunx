@@ -26,3 +26,5 @@
 1.1.0				- ImageRezizer eingebunden	
 
 1.2.0				- operating.FileSystem eingebunden
+
+1.2.1				- Projektkonvertierung nach VS10

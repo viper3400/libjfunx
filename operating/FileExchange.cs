@@ -63,7 +63,7 @@ namespace libjfunx.operating
     /// <summary>
     /// Klasse zum Schreiben ins Dateisystem
     /// </summary>
-    public class FileSystem : IFileExchange
+    public class FileSystemX : IFileExchange
     {
         /// <summary>
         /// Schreibt eine Daeii ins Dateisystem
