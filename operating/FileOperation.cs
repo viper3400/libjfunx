@@ -13,7 +13,33 @@ namespace libjfunx.operating
     /// </summary>
     public static class FileOperation
     {
+
         /// <summary>
+        /// Methode zum Erstellen eindeutiger Dateinamen.
+        /// Trennt das letzte Zeichen der Fileextension ab und ersetzt es durch den nächstfreien Integerwert im Verzeichnis.
+        /// </summary>
+        /// <param name="directory">The directory.</param>
+        /// <param name="filename">The filename.</param>
+        /// <returns>a unique filename</returns>
+        public static string RenameToUniqueExtension(string filename)
+        {
+            if (!File.Exists(filename))
+                return filename;
+            else
+            {
+                int counter = 0;
+                FileInfo fileInfo = new FileInfo(filename);
+                while (File.Exists(filename))
+                {
+                    counter++;
+                    filename = fileInfo.FullName.Replace(fileInfo.Extension, String.Empty) + counter + fileInfo.Extension;
+                }
+                return filename;
+            }
+        }
+        
+        /// <summary>
+        /// Methode zum Erstellen eindeutiger Dateinamen.
         /// Hängt an eine Datei einen eindeutigen Datums- und Zeitstring an 
         /// </summary>
         /// <param name="Dateiname">Name der umzubenennen Datei</param>

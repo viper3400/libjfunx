@@ -58,12 +58,13 @@ namespace libjfunx.logging
               /// </summary>
              /// <param name="meldung">Die neue Meldung.</param>
               void NeueMeldung(LogEintrag meldung);
-       
+              
               /// <summary>
               /// Gibt die Liste aller geloggten Meldungen zurück.
               /// </summary>
               /// <returns>Die Liste aller geloggten Meldungen.</returns>
               List<LogEintrag> GetMeldungen();
+
       }
 
        /// <summary>
@@ -180,15 +181,30 @@ namespace libjfunx.logging
     /// </summary>
     public class DABiSFormatLogger : ILogger
     {
-     
-        
+
+        /// <summary>
+        /// Konstruktor für den DABiS Logger mit Übergabe des Loglevels
+        /// </summary>
+        /// <seealso cref="DABiSFormatLogger(string LogFile)"/>
+        /// <remarks>Bei diesem Konstruktor kann das Loglevel übergeben werden</remarks>
+        /// <param name="LogFile">Pfad zur Logdatei</param>
+        /// <param name="LogLevel">LogLevel</param>
+        public DABiSFormatLogger(string LogFile, LogEintragTyp LogLevel)
+        {
+            writer.WriteFile = LogFile;
+            SetLogLevel(LogLevel);
+        }
+
         /// <summary>
         /// Konstruktor für den DABiS Logger
         /// </summary>
+        /// <seealso cref="DABiSFormatLogger(string LogFile, LogEintragTyp LogLevel)"/>
+        /// <remarks>Bei diesem Konstruktor wird das Loglevel zur Abwärtskompatibilität auf 5 (Debug gesetzt!</remarks>
         /// <param name="LogFile">Pfad zur Logdatei</param>
         public DABiSFormatLogger(string LogFile)
         {
-            writer.WriteFile = LogFile;        
+            writer.WriteFile = LogFile;
+            SetLogLevel(LogEintragTyp.Debug);
         }
 
         /// <summary>
@@ -200,9 +216,20 @@ namespace libjfunx.logging
         public DABiSFormatLogger()
         {
             writer.WriteFile = LogDatei.Name;
+            SetLogLevel(LogEintragTyp.Debug);
+        }
+
+        /// <summary>
+        /// Setzt das Loglevel, bis zu welchem geloggt werden soll.
+        /// </summary>
+        /// <param name="LogLevel">LogLevel</param>
+        public void SetLogLevel (LogEintragTyp LogLevel)
+        {
+            this.logLevel = GetDABiSLoglevel(LogLevel);
         }
 
         private QueueWriter writer = new QueueWriter();
+        private int logLevel;
 
         /// <summary>
         /// Schreibt eine neue Meldung ins LogFile
@@ -210,31 +237,34 @@ namespace libjfunx.logging
         /// <param name="Meldung"></param>
         public void NeueMeldung(LogEintrag Meldung)
         {
-            try
+            int iLoglevel = GetDABiSLoglevel(Meldung.Typ);
+            if (iLoglevel <= this.logLevel)
             {
-                int iLoglevel = GetDABiSLoglevel(Meldung.Typ);
-                string machineName = CutIfBigger(System.Environment.MachineName,13);
-                string username = CutIfBigger(System.Environment.UserName,20);
-                Meldung.Text = System.Text.RegularExpressions.Regex.Replace(Meldung.Text, "\r\n", ", ");
-                string sEntry = Convert.ToString(iLoglevel) + " "
-                            + Meldung.Zeitpunkt.ToString("dd.MM.yy HH:mm:ss")
-                            + "," + Meldung.Zeitpunkt.Millisecond.ToString().Substring(0, 2) + " "
-                            + CutIfBigger(Meldung.Text, 150)
-                            + machineName
-                            + username
-                            + System.Environment.NewLine;
+                try
+                {
+                    string machineName = CutIfBigger(System.Environment.MachineName, 13);
+                    string username = CutIfBigger(System.Environment.UserName, 20);
+                    Meldung.Text = System.Text.RegularExpressions.Regex.Replace(Meldung.Text, "\r\n", ", ");
+                    string sEntry = Convert.ToString(iLoglevel) + " "
+                                + Meldung.Zeitpunkt.ToString("dd.MM.yy HH:mm:ss")
+                                + "," + Meldung.Zeitpunkt.Millisecond.ToString().Substring(0, 2) + " "
+                                + CutIfBigger(Meldung.Text, 150)
+                                + machineName
+                                + username
+                                + System.Environment.NewLine;
 
-                writer.EnqueueMessage(sEntry);
-                //StreamWriter myFile = new StreamWriter(LogDatei.Name, true);
-                //myFile.Write(sEntry);
-                //myFile.Close();
+                    writer.EnqueueMessage(sEntry);
+                }
+                catch (Exception ex)
+                {
+                    //FS#14: Kein Exception mehr werfem, sondern Fehler ins Logfile
+                    Logger.Log(LogEintragTyp.Fehler, "LogEx: " + ex.Message);
+                    Logger.Log(LogEintragTyp.Fehler, "LogEx: " + ex.ToString());
+                }
             }
-            catch (Exception ex) 
-            { 
-                //throw; 
-                //FS#14: Kein Exception mehr werfem, sondern Fehler ins Logfile
-                Logger.Log(LogEintragTyp.Fehler, "LogEx: " + ex.Message);
-                Logger.Log(LogEintragTyp.Fehler, "LogEx: " + ex.ToString());
+            else 
+            {
+                // Hier passiert nichts, es soll ja eben nicht geloggt werden! 
             }
         }
 
