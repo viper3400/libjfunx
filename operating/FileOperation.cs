@@ -16,12 +16,12 @@ namespace libjfunx.operating
 
         /// <summary>
         /// Methode zum Erstellen eindeutiger Dateinamen.
-        /// Trennt das letzte Zeichen der Fileextension ab und ersetzt es durch den nächstfreien Integerwert im Verzeichnis.
+        /// Setzt am Endes des Dateinamen (ohne Extension) den nächstfreien Integerwert im Verzeichnis.
         /// </summary>
         /// <param name="directory">The directory.</param>
         /// <param name="filename">The filename.</param>
         /// <returns>a unique filename</returns>
-        public static string RenameToUniqueExtension(string filename)
+        public static string GetCountedUpFilename(string filename)
         {
             if (!File.Exists(filename))
                 return filename;
@@ -36,6 +36,38 @@ namespace libjfunx.operating
                 }
                 return filename;
             }
+        }
+
+        /// <summary>
+        /// Methode zum Erstellen eindeutiger Dateinamen.
+        /// Trennt den letzten Buchstaben der Extension ab und setzt den nächstfreien Integerwert im Verzeichnis.
+        /// </summary>
+        /// <param name="directory">The directory.</param>
+        /// <param name="filename">The filename.</param>
+        /// <returns>a unique filename</returns>
+        public static string GetCountedUpExtension(string filename)
+        {
+            if (!File.Exists(filename))
+                return filename;
+            else
+            {
+                int counter = 0;
+                FileInfo fileInfo = new FileInfo(filename);
+                while (File.Exists(filename))
+                {
+                    counter++;
+                    //filename = fileInfo.FullName.Replace(fileInfo.Extension, String.Empty) + counter + fileInfo.Extension;
+                    filename = fileInfo.Extension.Substring(0, fileInfo.Extension.Length - 1) + counter;
+                }
+                return filename;
+            }
+        }
+
+        [System.Obsolete("Use GetCountedUpFilename or GetCountedUpExtension", true)]
+        public static string RenameToUniqueExtension(string filename)
+        {
+            //obsolete
+            return null;
         }
         
         /// <summary>
