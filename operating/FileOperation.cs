@@ -57,7 +57,7 @@ namespace libjfunx.operating
                 {
                     counter++;
                     //filename = fileInfo.FullName.Replace(fileInfo.Extension, String.Empty) + counter + fileInfo.Extension;
-                    filename = fileInfo.Extension.Substring(0, fileInfo.Extension.Length - 1) + counter;
+                    filename = fileInfo.FullName.Replace(fileInfo.Extension, String.Empty) + fileInfo.Extension.Substring(0, fileInfo.Extension.Length - 1) + counter;
                 }
                 return filename;
             }
