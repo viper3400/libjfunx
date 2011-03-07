@@ -32,5 +32,7 @@
 1.3.0				- #FS31 Im DABiSFormatLogger kann angegeben werden, bis zu welchem Loglevel Einträge geschrieben werden können
 					- #FS32 RenameToUniqueExtension implemtiert
 
-1.3.1				- #FS38 Mehtode RenameToUniqueFileName obsolete, weil falsch 
+1.3.1				- #FS38 Methode RenameToUniqueFileName obsolete, weil falsch 
 						neue Methoden GetUniqueFileName und GetUniqueExtension
+
+1.3.2				- #FS46 ExternalProcess: Problem mit Leerzeichen im übegebenen String behoben

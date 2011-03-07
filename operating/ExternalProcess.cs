@@ -97,7 +97,7 @@ namespace libjfunx.operating
                         //p.SynchronizingObject = this;
                         Logger.Log(LogEintragTyp.Debug,"ExProcess:  " + this._process);
                         Logger.Log(LogEintragTyp.Debug, "ExArgument: " + this._processArguments);
-                        p.StartInfo.FileName = this._process;
+                        p.StartInfo.FileName = String.Format("'{0}'",this._process);
                         p.StartInfo.Arguments = this._processArguments;
                         p.Start();
                         this._isRunning = true;
