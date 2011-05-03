@@ -34,3 +34,8 @@
 
 1.3.1				- #FS38 Methode RenameToUniqueFileName obsolete, weil falsch 
 						neue Methoden GetUniqueFileName und GetUniqueExtension
+
+1.3.2				- #FS46 ExternalProcess: Problem mit Leerzeichen im übergebenen String behoben
+					- #FS14 Es wird nu ein zusätzliches Logfile (Logfile + ".exc") geschrieben, wenn
+						es innerhalb des DABiS Loggers zu einer Exception kommt, um deren ganzen
+						Text zu sehen

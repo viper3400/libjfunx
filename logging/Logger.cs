@@ -260,6 +260,18 @@ namespace libjfunx.logging
                     //FS#14: Kein Exception mehr werfem, sondern Fehler ins Logfile
                     Logger.Log(LogEintragTyp.Fehler, "LogEx: " + ex.Message);
                     Logger.Log(LogEintragTyp.Fehler, "LogEx: " + ex.ToString());
+
+                    // Hier wird nun nochmal eine Datei mit dem kompletten Inhalt der Exception geschrieben
+                    try
+                    {
+                        StreamWriter myFile = new StreamWriter(LogDatei.Name + ".exc");
+                        myFile.Write(ex.ToString());
+                        myFile.Close();
+                    }
+                    catch (Exception AltLogEx)
+                    {
+                        Logger.Log(LogEintragTyp.Fehler, "AltLogEx: " + AltLogEx.Message);
+                    }
                 }
             }
             else 
