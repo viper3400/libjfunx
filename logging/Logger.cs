@@ -265,7 +265,9 @@ namespace libjfunx.logging
                     try
                     {
                         StreamWriter myFile = new StreamWriter(LogDatei.Name + ".exc");
-                        myFile.Write(ex.ToString());
+                        myFile.WriteLine(ex.ToString());
+                        myFile.WriteLine(String.Format("MachineName: {0}, Username: {1}, Meldung: {2}",
+                            System.Environment.MachineName, System.Environment.UserName, Meldung.Text));   
                         myFile.Close();
                     }
                     catch (Exception AltLogEx)
