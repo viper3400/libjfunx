@@ -36,6 +36,11 @@
 						neue Methoden GetUniqueFileName und GetUniqueExtension
 
 1.3.2				- #FS46 ExternalProcess: Problem mit Leerzeichen im übergebenen String behoben
-					- #FS14 Es wird nu ein zusätzliches Logfile (Logfile + ".exc") geschrieben, wenn
+					- #FS14 Es wird nun ein zusätzliches Logfile (Logfile + ".exc") geschrieben, wenn
 						es innerhalb des DABiS Loggers zu einer Exception kommt, um deren ganzen
 						Text zu sehen
+
+1.3.3				- #FS14 Die Exception im Logging konnte nun behoben werden. Damit im DABiSFormatLogger die Millisekunden nur auf die
+						100stel geloggt werden, wurde per Substring versucht, die auf 2 Stellen zu kürzen. Das ging bei nur einstelligen
+						Millisekuden regelmässig schief. Diese werden nun vor dem Kürzen 3 stellig mit führenden Nullen erweitert.
+						Das .exc Logfile aus 1.3.2 wird nicht mehr geschrieben.

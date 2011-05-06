@@ -247,7 +247,7 @@ namespace libjfunx.logging
                     Meldung.Text = System.Text.RegularExpressions.Regex.Replace(Meldung.Text, "\r\n", ", ");
                     string sEntry = Convert.ToString(iLoglevel) + " "
                                 + Meldung.Zeitpunkt.ToString("dd.MM.yy HH:mm:ss")
-                                + "," + Meldung.Zeitpunkt.Millisecond.ToString().Substring(0, 2) + " "
+                                + "," + String.Format("{0,3:D3}",Meldung.Zeitpunkt.Millisecond).Substring(0, 2) + " "
                                 + CutIfBigger(Meldung.Text, 150)
                                 + machineName
                                 + username
@@ -262,18 +262,18 @@ namespace libjfunx.logging
                     Logger.Log(LogEintragTyp.Fehler, "LogEx: " + ex.ToString());
 
                     // Hier wird nun nochmal eine Datei mit dem kompletten Inhalt der Exception geschrieben
-                    try
-                    {
-                        StreamWriter myFile = new StreamWriter(LogDatei.Name + ".exc");
-                        myFile.WriteLine(ex.ToString());
-                        myFile.WriteLine(String.Format("MachineName: {0}, Username: {1}, Meldung: {2}",
-                            System.Environment.MachineName, System.Environment.UserName, Meldung.Text));   
-                        myFile.Close();
-                    }
-                    catch (Exception AltLogEx)
-                    {
-                        Logger.Log(LogEintragTyp.Fehler, "AltLogEx: " + AltLogEx.Message);
-                    }
+                    //try
+                    //{
+                    //    StreamWriter myFile = new StreamWriter(LogDatei.Name + ".exc");
+                    //    myFile.WriteLine(ex.ToString());
+                    //    myFile.WriteLine(String.Format("MachineName: {0}, Username: {1}, Meldung: {2}",
+                    //        System.Environment.MachineName, System.Environment.UserName, Meldung.Text));   
+                    //    myFile.Close();
+                    //}
+                    //catch (Exception AltLogEx)
+                    //{
+                    //    Logger.Log(LogEintragTyp.Fehler, "AltLogEx: " + AltLogEx.Message);
+                    //}
                 }
             }
             else 
