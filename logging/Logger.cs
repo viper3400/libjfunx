@@ -261,6 +261,9 @@ namespace libjfunx.logging
                     Logger.Log(LogEintragTyp.Fehler, "LogEx: " + ex.Message);
                     Logger.Log(LogEintragTyp.Fehler, "LogEx: " + ex.ToString());
 
+
+                    //TODO: Hier kommt es noch zu einem Fehler, wenn das Logfile gar nicht geschrieben werdne kann (Share nicht erreichbar)
+
                     // Hier wird nun nochmal eine Datei mit dem kompletten Inhalt der Exception geschrieben
                     //try
                     //{
