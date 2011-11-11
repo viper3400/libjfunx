@@ -41,28 +41,32 @@ namespace libjfunx.logging
         {
             lock (lockvar)
             {
+                //FS#74: Die klassenweite Variable msgQueue wird einen neuen Variable zugewiesen
+                //       und dann sofort gelöscht, damit sie von aussen wieder frisch befüllt werden kann
+                ArrayList msgWriteQueue = new ArrayList();
+                msgWriteQueue = msgQueue;
+                msgQueue.Clear();
 
-                
-                    if (msgQueue != null)
+                    if (msgWriteQueue != null)
                     {
                         try
                         {
                             StreamWriter myFile = new StreamWriter(writeFile, true);
-                            for (int i = 0; i < msgQueue.Count; i++)
+                            for (int i = 0; i < msgWriteQueue.Count; i++)
                             {
-                                myFile.Write(msgQueue[i]);
-                            }
+                                myFile.Write(msgWriteQueue[i]);
+                            }                            
                             myFile.Close();
                             // Die Arraylist leeren
-                            msgQueue.Clear();
+                            msgWriteQueue.Clear();
                         }
                         catch //(Exception ex) 
                         {
                             System.Threading.Thread.Sleep(500);
+                            //FS#74: Wenn es beim Schreiben zu einer Exception kommt,
+                            //        müssen die Daten wieder zurück in die HauptQueue
+                            msgQueue.AddRange(msgWriteQueue);
                             WriteMessage();
-                            //System.Windows.Forms.MessageBox.Show(ex.ToString());
-                            //System.Diagnostics.Process p = System.Diagnostics.Process.GetCurrentProcess();
-                            //System.Windows.Forms.MessageBox.Show(p.Id.ToString());
                         }
                         finally
                         {
