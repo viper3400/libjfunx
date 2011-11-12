@@ -62,7 +62,11 @@ namespace libjfunx.operating
                 return filename;
             }
         }
-
+        /// <summary>
+        /// Obsolete
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         [System.Obsolete("Use GetCountedUpFilename or GetCountedUpExtension", true)]
         public static string RenameToUniqueExtension(string filename)
         {
@@ -90,6 +94,20 @@ namespace libjfunx.operating
             catch (Exception ex) { Logger.Log(LogEintragTyp.Fehler, neuerDateiname + ":" + ex.Message); }
             
             return neuerDateiname;
+        }
+
+        /// <summary>
+        /// Hängt einem Verzeichnispfad einen Unterordner mit dem aktuellen Datum
+        /// und Zeit im Format JJMMTTHHMMSS an
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <returns></returns>
+        public static string GetUniqueDayDirectory(string Path)
+        {
+            string newPath = FileOperation.EnsureTrailingBackslash(Path);
+            //FS#57 DayDirectory im Format JJMMTTHHMMSS
+            newPath = newPath + DateTime.Now.ToString("yyMMddHHmmss");
+            return FileOperation.EnsureTrailingBackslash(newPath);
         }
 
         /// <summary>
@@ -153,6 +171,36 @@ namespace libjfunx.operating
         {
             var fileInfo = new FileInfo(path);
             File.Move(path, fileInfo.Directory + newName);
+        }
+
+        /// <summary>
+        /// Diese Methode findet heraus ob es sich um einen Netzwerkshare oder um einen
+        /// Laufwerkspfad handelt und schneidet diese Postionen ab um einen relativen Pfad
+        /// zu erhalten
+        /// Beginnt der ursprüngliche Name mit zwei Backslashes ist es wohl ein
+        /// UNC Pfad und die Backslashes, also die ersten beiden Stellen,
+        /// müssen abgetrennt werden, ansonsten ist es wohl ein Laufwerksbuchstabe
+        /// (Bsp: C:\TEST) und die ersten drei Stellen müssen abgetrennt werden.
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <returns></returns>
+        public static string CutDriveOrUNCInformation(string Path)
+        {
+            // Beginnt der ursprüngliche Name mit zwei Backslashes ist es wohl ein
+            // UNC Pfad und die Backslashes, also die ersten beiden Stellen,
+            // müssen abgetrennt werden, ansonsten ist es wohl ein Laufwerksbuchstabe
+            // (Bsp: C:\TEST) und die ersten drei Stellen müssen abgetrennt werden.
+            if (Path.StartsWith(@"\\"))
+            {
+                //UNC Pfad
+                return Path.Substring(2);
+
+            }
+            else
+            {
+                // Laufwerkspfad
+                return Path.Substring(3);
+            }
         }
 
         

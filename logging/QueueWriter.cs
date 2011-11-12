@@ -28,11 +28,21 @@ namespace libjfunx.logging
             this.writeFile = WriteFile;                                   
         }
 
+        /// <summary>
+        ///  Leerer Konstruktor
+        /// </summary>
         public QueueWriter()
         {
         }
 
-        public string WriteFile { set { this.writeFile = value; } }
+        /// <summary>
+        /// Gibt und setzt den aktuellen Dateinmane des QueuWriters
+        /// </summary>
+        public string WriteFile 
+        {
+            get { return this.writeFile; }
+            set { this.writeFile = value; } 
+        }
 
         /// <summary>
         /// Methode zum Schreiben der Nachricht
@@ -79,7 +89,10 @@ namespace libjfunx.logging
 
         }
 
-        // Schreibt einen String in eine Warteschlange und veranlasst das Schreiben in eine Datei.
+        /// <summary>
+        ///  Schreibt einen String in eine Warteschlange und veranlasst das Schreiben in eine Datei.
+        /// </summary>
+        /// <param name="Message"></param>
         public void EnqueueMessage(string Message)
         {
             msgQueue.Add(Message);

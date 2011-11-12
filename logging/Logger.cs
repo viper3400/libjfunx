@@ -258,26 +258,14 @@ namespace libjfunx.logging
                 catch (Exception ex)
                 {
                     //FS#14: Kein Exception mehr werfem, sondern Fehler ins Logfile
+                    string orgLogFile = writer.WriteFile;
+                    writer.WriteFile =  Environment.SpecialFolder.LocalApplicationData + @"\libjfunx_exception.log";
+
                     Logger.Log(LogEintragTyp.Fehler, "LogEx: " + ex.Message);
                     Logger.Log(LogEintragTyp.Fehler, "LogEx: " + ex.ToString());
 
+                    writer.WriteFile = orgLogFile;
 
-                    //writer.WriteFile = Environment.SpecialFolder.ApplicationData + @"\libjfunx_exception.log"
-                    //TODO: Hier kommt es noch zu einem Fehler, wenn das Logfile gar nicht geschrieben werdne kann (Share nicht erreichbar)
-
-                    // Hier wird nun nochmal eine Datei mit dem kompletten Inhalt der Exception geschrieben
-                    //try
-                    //{
-                    //    StreamWriter myFile = new StreamWriter(LogDatei.Name + ".exc");
-                    //    myFile.WriteLine(ex.ToString());
-                    //    myFile.WriteLine(String.Format("MachineName: {0}, Username: {1}, Meldung: {2}",
-                    //        System.Environment.MachineName, System.Environment.UserName, Meldung.Text));   
-                    //    myFile.Close();
-                    //}
-                    //catch (Exception AltLogEx)
-                    //{
-                    //    Logger.Log(LogEintragTyp.Fehler, "AltLogEx: " + AltLogEx.Message);
-                    //}
                 }
             }
             else 

@@ -44,3 +44,14 @@
 						100stel geloggt werden, wurde per Substring versucht, die auf 2 Stellen zu kürzen. Das ging bei nur einstelligen
 						Millisekuden regelmässig schief. Diese werden nun vor dem Kürzen 3 stellig mit führenden Nullen erweitert.
 						Das .exc Logfile aus 1.3.2 wird nicht mehr geschrieben.
+
+1.4.0				- FS#53 GetOSVersion.OSVersion implemntiert: Gibt zurück, ob es sich beim eingesetzten OS um Windows7 oder um BeforeWindows7 handelt
+					- FS#69 Wenn das Logfile nie geschrieben werden konnte (falscher Netzwerkpfad o.ä.), gab es nach einiger Zeit einen Überlauf und
+					        das Hostprogramm stürzte ab. Im Exception-Fall wird nun das Log nach 
+							Environment.SpecialFolder.LocalApplicationData + @"\libjfunx_exception.log" geschrieben
+					- FS#74 Es wurden Logeinträge verschluckt, wenn sie zeitlich zwischen dem Schreiben der Logeintragswarteschlange und dem Löschen
+					        dieser Warteschlange kamen
+				    - FS#51 FileOperation: Eine Funktion zum Abtrenen eines Laufwerksbuchstaben oder \\ bei einem Fileshare aus einem Pfad
+					        implementiert
+					- Funktion implementiert, die eine übergebenen Verzeichnisstring ein Unterverzeichnis mit der aktuellen Uhrzeit und
+					  dem aktuellen Datum im Format JJMMTTHHmmSS anhängt

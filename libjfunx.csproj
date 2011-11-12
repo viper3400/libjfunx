@@ -79,6 +79,7 @@
     <Compile Include="communication\FTPConnection.cs" />
     <Compile Include="operating\FileExchange.cs" />
     <Compile Include="operating\FileOperation.cs" />
+    <Compile Include="operating\GetOSVersion.cs" />
     <Compile Include="operating\IconHandler.cs" />
     <Compile Include="operating\INIFile.cs" />
     <Compile Include="operating\SpecialEnvironment.cs" />
