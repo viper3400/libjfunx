@@ -53,8 +53,7 @@ namespace libjfunx.logging
             {
                 //FS#74: Die klassenweite Variable msgQueue wird einen neuen Variable zugewiesen
                 //       und dann sofort gelöscht, damit sie von aussen wieder frisch befüllt werden kann
-                ArrayList msgWriteQueue = new ArrayList();
-                msgWriteQueue = msgQueue;
+                ArrayList msgWriteQueue = new ArrayList(msgQueue);
                 msgQueue.Clear();
 
                     if (msgWriteQueue != null)
