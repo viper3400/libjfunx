@@ -64,10 +64,16 @@ namespace libjfunx.logging
                             for (int i = 0; i < msgWriteQueue.Count; i++)
                             {
                                 myFile.Write(msgWriteQueue[i]);
-                            }                            
+                            }
                             myFile.Close();
                             // Die Arraylist leeren
                             msgWriteQueue.Clear();
+                        }
+                        catch (System.ArgumentOutOfRangeException)
+                        {
+                            // In einigen Fällen scheint es vorzukomen, dass msgWriteQueue[i] nicht vorhanden ist,
+                            // hier sollte entsprechend nichts gemacht werden
+                            System.Diagnostics.EventLog.WriteEntry("libjfunx", "Unerlaubter Zugriff auf LogArray", System.Diagnostics.EventLogEntryType.Warning);
                         }
                         catch //(Exception ex) 
                         {

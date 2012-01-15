@@ -71,6 +71,7 @@ namespace libjfunx.imaging
                     objGfx.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                     objGfx.DrawImage(Source, new Rectangle(intPosX, intPosY, intNewX, intNewY));
                 }
+                Source.Dispose();
                 return objNewImage;
             }
             else
@@ -106,6 +107,7 @@ namespace libjfunx.imaging
             Image img = ResizePic(Source.FullName, Width, Height, false, Color.Transparent, -1, -1);
             string DestinationFileName = Destination + Source.Name;
             img.Save(DestinationFileName);
+            img.Dispose();
             return DestinationFileName;
         }
 

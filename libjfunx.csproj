@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="imaging\ExifReader.cs" />
     <Compile Include="imaging\ImageResizer.cs" />
     <Compile Include="logging\EventLogger.cs" />
     <Compile Include="logging\Logger.cs" />
