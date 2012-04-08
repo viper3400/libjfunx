@@ -203,6 +203,36 @@ namespace libjfunx.operating
             }
         }
 
+        /// <summary>
+        /// Diese Methode hängt dem übergebenen Dateinamen die übergebene Extension an.
+        /// Ist zur Abtrennung von der ursprünglichen Extension ein Punkt gewünscht, muss dieser
+        /// in der neuen Extension explizit angegeben werden.
+        /// </summary>
+        /// <param name="OriginalFileName"></param>
+        /// <param name="ExtraExtension"></param>
+        public static void AddExtraFileExtension(string OriginalFileName, string ExtraExtension)
+        {
+            string newFileName = String.Format("{0}{1}", OriginalFileName, ExtraExtension);            
+            File.Move(OriginalFileName, newFileName);
+        }
+
+        /// <summary>
+        /// Dies Methode hängt den in der Liste übegebenen Dateinamen die übergebene Extension an.
+        /// Ist zur Abtrennung von der ursprünglichen Extension ein Punkt gewünscht, muss dieser
+        /// in der neuen Extension explizit angegeben werden.
+        /// </summary>
+        /// <param name="OrginalFileNameList"></param>
+        /// <param name="ExtraExtension"></param>
+        public static void AddExtraFileExtension(IEnumerable<string> OrginalFileNameList, string ExtraExtension)
+        {
+            foreach (string file in OrginalFileNameList)
+            {
+                AddExtraFileExtension(file, ExtraExtension);
+            }
+        }
+
+
+
         
     }
 }

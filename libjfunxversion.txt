@@ -56,7 +56,10 @@
 					- Funktion implementiert, die eine übergebenen Verzeichnisstring ein Unterverzeichnis mit der aktuellen Uhrzeit und
 					  dem aktuellen Datum im Format JJMMTTHHmmSS anhängt
 
-1.4.1.				- FS#77: ImageResizer verursachte bei vielen Aufträgen einen Speicherüberlauf, weil nicht mehr benötigte Ressourcen nicht
+1.4.1				- FS#77: ImageResizer verursachte bei vielen Aufträgen einen Speicherüberlauf, weil nicht mehr benötigte Ressourcen nicht
 					  freigegeben wurde (Image.Dispose())
 					- EXIF-Reader, implemtiert: In einer ersten Funktion kann das EXIF-Datum eines Bildes ausgelesen werden
 					- Versuch, eine weiter Exception der QueueWriter Klasse abzufgangen
+
+2.0.0				- FS#81: AddExtraFileExtension, eine Methode zum Anhängen eines Strings hinter die Dateiextensione
+					- FS#82: libjfunx benötigt nun NET 4.0
