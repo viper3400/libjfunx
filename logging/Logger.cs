@@ -179,6 +179,7 @@ namespace libjfunx.logging
     /// <summary>
     /// Loggt im DABiS-Format
     /// </summary>
+    [Obsolete("Use ExtendedFileLogger", false)]
     public class DABiSFormatLogger : ILogger
     {
 

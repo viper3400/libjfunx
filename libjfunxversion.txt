@@ -63,3 +63,5 @@
 
 2.0.0				- FS#81: AddExtraFileExtension, eine Methode zum Anhängen eines Strings hinter die Dateiextensione
 					- FS#82: libjfunx benötigt nun NET 4.0
+
+2.1.0				- neuer Logger: ExtendedFileLogger, die Logmeldung wird nun nach hinten heraus offen in die Zeile geschrieben

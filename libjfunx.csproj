@@ -75,6 +75,7 @@
     <Compile Include="imaging\ExifReader.cs" />
     <Compile Include="imaging\ImageResizer.cs" />
     <Compile Include="logging\EventLogger.cs" />
+    <Compile Include="logging\ExtendedFileLogger.cs" />
     <Compile Include="logging\Logger.cs" />
     <Compile Include="logging\QueueWriter.cs" />
     <Compile Include="operating\FileSystem.cs" />
