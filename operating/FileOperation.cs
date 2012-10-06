@@ -231,6 +231,27 @@ namespace libjfunx.operating
             }
         }
 
+        /// <summary>
+        /// Compares the filesize of two given files.
+        /// </summary>
+        /// <param name="File1"></param>
+        /// <param name="File2"></param>
+        /// <returns>Returns true in case the filesize of both files match.
+        /// Returns false in case the filesize of both files won't match.</returns>
+        public static bool CompareFileSize(string File1, string File2)
+        {
+            try
+            {
+                System.IO.FileInfo infoFile1 = new System.IO.FileInfo(File1);
+                System.IO.FileInfo infoFile2 = new System.IO.FileInfo(File2);
+                return long.Equals(infoFile1.Length, infoFile2.Length);
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
 
 
         

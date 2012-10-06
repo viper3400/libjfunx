@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libjfunx", "libjfunx.csproj", "{E4941CF5-11C4-4F58-8010-2479C784D11C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibJFunxTest", "LibJFunxTest\LibJFunxTest.csproj", "{3D47BA0A-1CD7-48C3-BA32-A3D2ECBF31AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FE8FDFAB-3276-49F8-B735-B75892185768}"
+	ProjectSection(SolutionItems) = preProject
+		libjfunx.vsmdi = libjfunx.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = libjfunx.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -23,6 +35,16 @@ Global
 		{E4941CF5-11C4-4F58-8010-2479C784D11C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E4941CF5-11C4-4F58-8010-2479C784D11C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E4941CF5-11C4-4F58-8010-2479C784D11C}.Release|x86.ActiveCfg = Release|Any CPU
+		{3D47BA0A-1CD7-48C3-BA32-A3D2ECBF31AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D47BA0A-1CD7-48C3-BA32-A3D2ECBF31AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D47BA0A-1CD7-48C3-BA32-A3D2ECBF31AA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3D47BA0A-1CD7-48C3-BA32-A3D2ECBF31AA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3D47BA0A-1CD7-48C3-BA32-A3D2ECBF31AA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3D47BA0A-1CD7-48C3-BA32-A3D2ECBF31AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D47BA0A-1CD7-48C3-BA32-A3D2ECBF31AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D47BA0A-1CD7-48C3-BA32-A3D2ECBF31AA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3D47BA0A-1CD7-48C3-BA32-A3D2ECBF31AA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3D47BA0A-1CD7-48C3-BA32-A3D2ECBF31AA}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

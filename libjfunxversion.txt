@@ -65,3 +65,5 @@
 					- FS#82: libjfunx benötigt nun NET 4.0
 
 2.1.0				- neuer Logger: ExtendedFileLogger, die Logmeldung wird nun nach hinten heraus offen in die Zeile geschrieben
+
+2.2.0				- neue Methode: bool operating.FileOperation.CompareFileSize(string File1, string File2)
