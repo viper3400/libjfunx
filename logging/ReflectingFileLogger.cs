@@ -19,11 +19,13 @@ namespace libjfunx.logging
         /// <param name="LogFileName">Path and name of the log file.</param>
         /// <param name="LogLevel">Specfies the depth to which log entries will be writte</param>
         /// <example>
+        /// <code>
         /// using libjfunx.logging;
         ///
         /// //Create new log instance (once per app)
         /// Logger.SetLogger(new ReflectingFileLogger(@"c:\temp\testlogger.txt", LogEintragTyp.Debug));
         /// Logger.Log(LogEintragTyp.Debug, "Test");
+        /// </code>
         /// </example>
         public ReflectingFileLogger(string LogFileName, LogEintragTyp LogLevel) : base (LogFileName, LogLevel)
         {
