@@ -67,3 +67,5 @@
 2.1.0				- neuer Logger: ExtendedFileLogger, die Logmeldung wird nun nach hinten heraus offen in die Zeile geschrieben
 
 2.2.0				- neue Methode: bool operating.FileOperation.CompareFileSize(string File1, string File2)
+
+2.3.0				- neuer Logger: ReflectingFileLogger, basierend auf dem ExtendedFileLogger wird hier zu Beginn jeweils die aufrufende Klasse und die Methode mit geloggt

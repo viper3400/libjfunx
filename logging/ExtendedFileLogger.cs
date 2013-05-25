@@ -10,8 +10,8 @@ namespace libjfunx.logging
     /// </summary>
     public class ExtendedFileLogger : ILogger
     {
-        private QueueWriter writer = new QueueWriter();
-        private string[] validLevels;
+        protected QueueWriter writer = new QueueWriter();
+        protected string[] validLevels;
         
         /// <summary>
         /// Konstruktor der Klasse
@@ -28,7 +28,7 @@ namespace libjfunx.logging
         /// Schreibt einen neue Meldung ins Logfile
         /// </summary>
         /// <param name="Message"></param>
-        public void NeueMeldung(LogEintrag Message)
+        public virtual void NeueMeldung(LogEintrag Message)
         {
             if (this.validLevels.Contains(Message.Typ.ToString()))      
             {

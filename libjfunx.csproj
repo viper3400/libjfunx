@@ -78,6 +78,7 @@
     <Compile Include="logging\ExtendedFileLogger.cs" />
     <Compile Include="logging\Logger.cs" />
     <Compile Include="logging\QueueWriter.cs" />
+    <Compile Include="logging\ReflectingFileLogger.cs" />
     <Compile Include="operating\FileSystem.cs" />
     <Compile Include="operating\ExternalProcess.cs" />
     <Compile Include="communication\FTPConnection.cs" />
