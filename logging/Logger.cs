@@ -180,17 +180,17 @@ namespace libjfunx.logging
     /// Loggt im DABiS-Format
     /// </summary>
     [Obsolete("Use ExtendedFileLogger", false)]
-    public class DABiSFormatLogger : ILogger
+    public class LegacyFormatLogger : ILogger
     {
 
         /// <summary>
         /// Konstruktor für den DABiS Logger mit Übergabe des Loglevels
         /// </summary>
-        /// <seealso cref="DABiSFormatLogger(string LogFile)"/>
+        /// <seealso cref="LegacyFormatLogger(string LogFile)"/>
         /// <remarks>Bei diesem Konstruktor kann das Loglevel übergeben werden</remarks>
         /// <param name="LogFile">Pfad zur Logdatei</param>
         /// <param name="LogLevel">LogLevel</param>
-        public DABiSFormatLogger(string LogFile, LogEintragTyp LogLevel)
+        public LegacyFormatLogger(string LogFile, LogEintragTyp LogLevel)
         {
             writer.WriteFile = LogFile;
             SetLogLevel(LogLevel);
@@ -199,10 +199,10 @@ namespace libjfunx.logging
         /// <summary>
         /// Konstruktor für den DABiS Logger
         /// </summary>
-        /// <seealso cref="DABiSFormatLogger(string LogFile, LogEintragTyp LogLevel)"/>
+        /// <seealso cref="LegacyFormatLogger(string LogFile, LogEintragTyp LogLevel)"/>
         /// <remarks>Bei diesem Konstruktor wird das Loglevel zur Abwärtskompatibilität auf 5 (Debug gesetzt!</remarks>
         /// <param name="LogFile">Pfad zur Logdatei</param>
-        public DABiSFormatLogger(string LogFile)
+        public LegacyFormatLogger(string LogFile)
         {
             writer.WriteFile = LogFile;
             SetLogLevel(LogEintragTyp.Debug);
@@ -213,8 +213,8 @@ namespace libjfunx.logging
         /// </summary>
         /// <remarks>libjfunx.Logging.LogDatei.Name muss gesetzt sein</remarks>
         /// <seealso cref="libjfunx.logging.LogDatei"/>
-        [System.Obsolete("DABiSFormatLogger (string LogFile) nutzen")]
-        public DABiSFormatLogger()
+        [System.Obsolete("LegacyFormatLogger (string LogFile) nutzen")]
+        public LegacyFormatLogger()
         {
             writer.WriteFile = LogDatei.Name;
             SetLogLevel(LogEintragTyp.Debug);
