@@ -74,9 +74,17 @@
   <ItemGroup>
     <Compile Include="imaging\ExifReader.cs" />
     <Compile Include="imaging\ImageResizer.cs" />
+    <Compile Include="logging\ConsoleLogger.cs" />
     <Compile Include="logging\EventLogger.cs" />
     <Compile Include="logging\ExtendedFileLogger.cs" />
     <Compile Include="logging\Logger.cs" />
+    <Compile Include="logging\LogWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="logging\LogWindow.Designer.cs">
+      <DependentUpon>LogWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="logging\LogWindowLogger.cs" />
     <Compile Include="logging\QueueWriter.cs" />
     <Compile Include="logging\ReflectingFileLogger.cs" />
     <Compile Include="operating\FileSystem.cs" />
@@ -120,6 +128,11 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="logging\LogWindow.resx">
+      <DependentUpon>LogWindow.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
